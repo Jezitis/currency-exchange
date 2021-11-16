@@ -1,0 +1,26 @@
+.amount {
+  &-block {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+    .input__field {
+      width: 70%;
+      border: 1px solid $primary-blue;
+      border-radius: 5px 0 0 5px;
+      border-right: none;
+    }
+
+    .dropdown {
+      width: 30%;
+      &__selected {
+        border-radius: 0 5px 5px 0;
+
+        &.open {
+          border-radius: 0 5px 0 0;
+        }
+      }
+    }
+  }
+}

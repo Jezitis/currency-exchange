@@ -1,0 +1,59 @@
+.dropdown {
+  position: relative;
+  width: 80px;
+  text-align: left;
+  outline: none;
+  height: 47px;
+  line-height: 47px;
+  
+ &__selected {
+    background-color: $primary-blue;
+    border-radius: 5px;
+    border: 1px solid $primary-blue;
+    color: $white;
+    padding-left: 10px;
+    cursor: pointer;
+
+    &:after{
+      position: absolute;
+      content: "";
+      top: 22px;
+      right: 10px;
+      width: 0;
+      height: 0;
+      border: 5px solid transparent;
+      border-color: #fff transparent transparent transparent;
+    }
+
+    &.open {
+      border: 1px solid $primary-blue;
+      border-radius: 5px 5px 0px 0px;
+    }
+  }
+  &__options {
+    color: $primary-blue;
+    border-radius: 0px 0px 5px 5px;
+    overflow: hidden;
+    border-right: 1px solid $primary-blue;
+    border-left: 1px solid $primary-blue;
+    border-bottom: 1px solid $primary-blue;
+    position: absolute;
+    background-color: $white;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    div {
+      color: $primary-blue;
+      padding-left: 10px;
+      cursor: pointer;
+      user-select: none;
+      &:hover {
+        background-color: $primary-blue;
+        color: $white;
+      }
+    }
+  }
+}
+.selectHide {
+  display: none;
+}

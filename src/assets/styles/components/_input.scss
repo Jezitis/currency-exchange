@@ -1,0 +1,12 @@
+.input{
+  &__label {
+    width: 100%;
+    padding-bottom: 10px;
+  }
+
+  &__field {
+    height: 49px;
+    line-height: 49;
+    padding-left: 10px;
+  }
+}
