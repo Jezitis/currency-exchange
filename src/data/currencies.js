@@ -1,0 +1,32 @@
+export const CURRENCIES = [
+  {
+    code: 'AUD'
+  },
+  {
+    code: 'USD'
+  },
+  {
+    code: 'EUR'
+  },
+  {
+    code: 'RUB'
+  },
+  {
+    code: 'GBP'
+  },
+  {
+    code: 'CAD'
+  },
+  {
+    code: 'DKK'
+  },
+  {
+    code: 'GEL'
+  },
+  {
+    code: 'PLN'
+  },
+  {
+    code: 'CHF'
+  },
+]
