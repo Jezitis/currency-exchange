@@ -1,0 +1,16 @@
+.summary {
+  min-height: 195px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  &-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    &__line {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+  }
+}
