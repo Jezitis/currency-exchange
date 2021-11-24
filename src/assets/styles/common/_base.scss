@@ -54,4 +54,9 @@ ul {
   cursor: pointer;
   font-family: "Orienta";
   font-size: 18px;
+
+  &:disabled {
+    cursor:not-allowed;
+    background-color: $grey;
+  }
 }

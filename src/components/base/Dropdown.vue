@@ -10,10 +10,10 @@
     <div class="dropdown__options" :class="{ selectHide: !show }">
       <div
         v-for="(option, index) in options"
-        :key="option.id ? option.id : index"
+        :key="option.code ? option.code : index"
         @click="choose(option)"
       >
-        {{ option.name }}
+        {{ option.code }}
       </div>
     </div>
   </div>
@@ -34,16 +34,16 @@ export default {
   data() {
     return {
       selected: this.defaultValue
-        ? this.defaultValue.name
-        : this.options[0].name,
+        ? this.defaultValue.code
+        : this.options[0].code,
       show: false,
     };
   },
   methods: {
     choose(option) {
-      this.selected = option.name;
+      this.selected = option.code;
       this.show = false;
-      this.$emit("change", option);
+      this.$emit("change", option.code);
     },
   },
 };
