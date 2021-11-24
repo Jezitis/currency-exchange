@@ -51,7 +51,13 @@
               Commission: <span>{{ currentPair[0].commission * 100 }}%</span>
             </p>
           </div>
-          <button class="btn-exchange" :disabled="!recieveAmount || !payAmount">Exchange</button>
+          <button
+            class="btn-exchange"
+            @click="$router.push('/success')"
+            :disabled="!recieveAmount || !payAmount"
+          >
+            Exchange
+          </button>
         </div>
       </template>
     </card>
@@ -154,8 +160,8 @@ export default {
   },
   watch: {
     timeLeft() {
-      if(this.timeLeft === 0) this.refresh();
-    }
+      if (this.timeLeft === 0) this.refresh();
+    },
   },
   async mounted() {
     await this.$store.dispatch("requestCurrencies");
@@ -167,8 +173,8 @@ export default {
       this.timeLeft -= 1;
     }, 1000);
   },
-  beforeUnmount() {
-    this.interval = null;
-  }
+  beforeDestroy() {
+    clearInterval(this.interval);
+  },
 };
 </script>

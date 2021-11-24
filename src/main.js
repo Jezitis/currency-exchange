@@ -3,6 +3,7 @@ import App from "./App.vue";
 import store from "./store";
 
 import "./assets/styles/main.scss";
+import router from "./router";
 
 Vue.config.productionTip = false;
 
@@ -23,5 +24,6 @@ Vue.directive("numonly", {
 
 new Vue({
   store,
+  router,
   render: (h) => h(App),
 }).$mount("#app");

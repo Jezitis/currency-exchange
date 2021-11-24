@@ -24,9 +24,9 @@ export default new Vuex.Store({
   actions: {
     requestCurrencies: async ({ commit }) => {
       try {
-        const res = await axios.get(
-          "assets/currencies.json", { baseURL: window.location.origin }
-        );
+        const res = await axios.get("assets/currencies.json", {
+          baseURL: window.location.origin,
+        });
         const currencies = JSON.stringify(res.data);
         commit("setCurrencies", JSON.parse(currencies));
       } catch (err) {
@@ -36,9 +36,9 @@ export default new Vuex.Store({
     requestPairs: async ({ state, commit }) => {
       try {
         const currencies = state.currencies;
-        const res = await axios.get(
-          "assets/commissions.json", { baseURL: window.location.origin }
-        );
+        const res = await axios.get("assets/commissions.json", {
+          baseURL: window.location.origin,
+        });
         const commisions = JSON.parse(JSON.stringify(res.data));
         let currencyPairs = currencies.map((item) => {
           return currencies.map((curr) => {
@@ -46,9 +46,7 @@ export default new Vuex.Store({
               mainCurrency: item.code,
               quoteCurrency: curr.code,
               commission:
-                commisions[
-                  Math.floor(Math.random() * commisions.length)
-                ].value,
+                commisions[Math.floor(Math.random() * commisions.length)].value,
             };
           });
         });
@@ -77,8 +75,8 @@ export default new Vuex.Store({
     },
   },
   getters: {
-    getCurrencies: state => state.currencies,
-    getCurrencyPairs: state => state.currencyPairs,
-    getExchangeRates: state => state.exchangeRates,
+    getCurrencies: (state) => state.currencies,
+    getCurrencyPairs: (state) => state.currencyPairs,
+    getExchangeRates: (state) => state.exchangeRates,
   },
 });

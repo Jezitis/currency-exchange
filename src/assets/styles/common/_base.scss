@@ -31,6 +31,12 @@ ul {
   list-style-type: none;
 }
 
+#app {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+}
+
 .page-container {
   max-width: 900px;
   display: flex;
@@ -59,4 +65,9 @@ ul {
     cursor:not-allowed;
     background-color: $grey;
   }
+}
+
+.dblock {
+  display: block;
+  width: 100%;
 }
