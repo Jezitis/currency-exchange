@@ -26,51 +26,26 @@
         />
       </template>
     </card>
-    <card :heading="'Summary'" v-if="mainCurrency && quoteCurrency">
-      <template #content>
-        <div class="summary">
-          <div class="summary-info">
-            <p class="summary-info__line">
-              You pay: <span> {{ payAmount }} {{ mainCurrency }}</span>
-            </p>
-            <p class="summary-info__line">
-              You get: <span>{{ recieveAmount }} {{ quoteCurrency }}</span>
-            </p>
-            <p class="summary-info__line">
-              Exchange Rate:
-              <span>
-                1 {{ mainCurrency }} =
-                {{ currentRate }}
-                {{ quoteCurrency }}
-              </span>
-            </p>
-            <span class="summary-info__line summary-info__line--small"
-              >* rates will update every 30 seconds</span
-            >
-            <p class="summary-info__line">
-              Commission: <span>{{ currentPair.commission * 100 }}%</span>
-            </p>
-          </div>
-          <button
-            class="btn-exchange"
-            @click="$router.push('/success')"
-            :disabled="!recieveAmount || !payAmount"
-          >
-            Exchange
-          </button>
-        </div>
-      </template>
-    </card>
+    <summary-component
+      :currentPair="currentPair"
+      :currentRate="currentRate"
+      :mainCurrency="mainCurrency"
+      :payAmount="payAmount"
+      :quoteCurrency="quoteCurrency"
+      :recieveAmount="recieveAmount"
+    />
   </div>
 </template>
 <script>
 import AmountInput from "../components/Amount/AmountInput.vue";
 import Card from "../components/base/Card.vue";
+import SummaryComponent from "../components/Summary.vue"
 export default {
   name: "ExchangePage",
   components: {
     Card,
     AmountInput,
+    SummaryComponent,
   },
   data() {
     return {
