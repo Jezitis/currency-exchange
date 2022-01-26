@@ -39,15 +39,25 @@ ul {
 
 .page-container {
   max-width: 900px;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  align-items: center;
   margin: 0 auto;
+
+  @media screen and (max-width: 640px) {
+    justify-content: center;
+  }
 }
 
 .secondary-heading {
   width: 100%;
   margin-bottom: 20px;
+
+  @media screen and (max-width: 640px) {
+    text-align: center;
+  }
 }
 
 .btn-exchange {
