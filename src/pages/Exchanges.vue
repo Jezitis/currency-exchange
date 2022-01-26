@@ -2,32 +2,32 @@
   <div class="page-container">
     <h2 class="secondary-heading">Exchange</h2>
     <section class="card-container" v-if="mainCurrency && quoteCurrency">
-    <h2 class="secondary-heading">
-      Exchange {{ mainCurrency }} to {{ quoteCurrency }}
-    </h2>
-    <div class="card-content">
-      <amount-input
-        :label="'You pay'"
-        :name="'payAmount'"
-        :placeholder="'Pay Amount'"
-        :value="payAmount"
-        @input="calculateRecieve($event)"
-        :options="availableCurrencies"
-        @change="changeCurrency($event, 'mainCurrency')"
-        :defaultValue="allCurrencies[0]"
-      />
-      <amount-input
-        :label="'You get'"
-        :name="'recieveAmount'"
-        :placeholder="'Get Amount'"
-        :value="recieveAmount"
-        @input="calculatePay($event)"
-        :options="availableCurrencies"
-        @change="changeCurrency($event, 'quoteCurrency')"
-        :defaultValue="allCurrencies[1]"
-      />
-    </div>
-  </section>
+      <h2 class="secondary-heading">
+        Exchange {{ mainCurrency }} to {{ quoteCurrency }}
+      </h2>
+      <div class="card-content">
+        <amount-input
+          :label="'You pay'"
+          :name="'payAmount'"
+          :placeholder="'Pay Amount'"
+          :value="payAmount"
+          @input="calculateRecieve($event)"
+          :options="availableCurrencies"
+          @change="changeCurrency($event, 'mainCurrency')"
+          :defaultValue="allCurrencies[0]"
+        />
+        <amount-input
+          :label="'You get'"
+          :name="'recieveAmount'"
+          :placeholder="'Get Amount'"
+          :value="recieveAmount"
+          @input="calculatePay($event)"
+          :options="availableCurrencies"
+          @change="changeCurrency($event, 'quoteCurrency')"
+          :defaultValue="allCurrencies[1]"
+        />
+      </div>
+    </section>
     <summary-component
       v-if="currentPair && currentRate"
       :currentPair="currentPair"
@@ -40,7 +40,7 @@
   </div>
 </template>
 <script>
-import AmountInput from '../components/Amount/AmountInput.vue'
+import AmountInput from "../components/Amount/AmountInput.vue";
 import SummaryComponent from "../components/Summary.vue";
 export default {
   name: "ExchangePage",
