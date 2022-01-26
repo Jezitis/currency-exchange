@@ -10,7 +10,8 @@
         :label="'You pay'"
         :name="'payAmount'"
         :placeholder="'Pay Amount'"
-        v-model="payAmountExchanged"
+        :value="payAmount"
+        @input="calculateRecieve($event)"
         :options="availableCurrencies"
         @change="changeCurrency($event, 'mainCurrency')"
         :defaultValue="allCurrencies[0]"
@@ -19,7 +20,8 @@
         :label="'You get'"
         :name="'recieveAmount'"
         :placeholder="'Get Amount'"
-        v-model="recieveAmountExchanged"
+        :value="recieveAmount"
+        @input="calculatePay($event)"
         :options="availableCurrencies"
         @change="changeCurrency($event, 'quoteCurrency')"
         :defaultValue="allCurrencies[1]"
@@ -57,24 +59,6 @@ export default {
     };
   },
   computed: {
-    payAmountExchanged: {
-      get() {
-        return this.payAmount;
-      },
-      set(val) {
-        this.payAmount = parseFloat(val);
-        this.calculateRecieve();
-      },
-    },
-    recieveAmountExchanged: {
-      get() {
-        return this.recieveAmount;
-      },
-      set(val) {
-        this.recieveAmount = parseFloat(val);
-        this.calculatePay();
-      },
-    },
     allCurrencies() {
       return this.$store.getters.getCurrencies;
     },
@@ -109,21 +93,21 @@ export default {
         this.calculateRecieve();
       }
     },
-    calculatePay() {
-      const converted = Math.fround(this.recieveAmount / this.currentRate);
+    calculatePay(val) {
+      const converted = Math.fround(val / this.currentRate);
       const commission = Math.round(converted * this.currentPair.commission);
       const result = parseFloat(converted + commission);
       return isNaN(result)
         ? ((this.payAmount = 0), (this.recieveAmount = 0))
         : (this.payAmount = result);
     },
-    calculateRecieve() {
-      const converted = this.payAmount * this.currentRate;
+    calculateRecieve(val) {
+      const converted = val * this.currentRate;
       const commission = converted * this.currentPair.commission;
       const result = parseFloat(converted - commission);
       return isNaN(result)
         ? ((this.recieveAmount = 0), (this.payAmount = 0))
-        : (this.recieveAmount = parseFloat(result));
+        : (this.recieveAmount = result);
     },
     async refresh() {
       this.timeLeft = 30;
