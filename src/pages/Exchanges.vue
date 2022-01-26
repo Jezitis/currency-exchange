@@ -113,8 +113,12 @@ export default {
     },
     async refresh() {
       this.timeLeft = 30;
-      await this.$store.dispatch("requestPairs");
-      await this.$store.dispatch("requestRates");
+      try {
+        await this.$store.dispatch("requestPairs");
+        await this.$store.dispatch("requestRates");
+      } catch (error) {
+        console.log(error);
+      }
       this.calculateRecieve();
     },
   },
@@ -124,14 +128,19 @@ export default {
     },
   },
   async mounted() {
-    await this.$store.dispatch("requestCurrencies");
-    await this.$store.dispatch("requestPairs");
-    await this.$store.dispatch("requestRates");
+    try {
+      await this.$store.dispatch("requestCurrencies");
+      await this.$store.dispatch("requestPairs");
+      await this.$store.dispatch("requestRates");
+    } catch (error) {
+      console.log(error);
+    } finally {
+      this.interval = setInterval(() => {
+        this.timeLeft -= 1;
+      }, 1000);
+    }
     this.mainCurrency = this.allCurrencies[0].code;
     this.quoteCurrency = this.allCurrencies[1].code;
-    this.interval = setInterval(() => {
-      this.timeLeft -= 1;
-    }, 1000);
   },
   beforeDestroy() {
     clearInterval(this.interval);
