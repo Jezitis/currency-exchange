@@ -94,6 +94,7 @@ export default {
       }
     },
     calculatePay(val) {
+      this.recieveAmount = parseFloat(val);
       const converted = Math.fround(val / this.currentRate);
       const commission = Math.round(converted * this.currentPair.commission);
       const result = parseFloat(converted + commission);
@@ -102,6 +103,7 @@ export default {
         : (this.payAmount = result);
     },
     calculateRecieve(val) {
+      this.payAmount = parseFloat(val);
       const converted = val * this.currentRate;
       const commission = converted * this.currentPair.commission;
       const result = parseFloat(converted - commission);
