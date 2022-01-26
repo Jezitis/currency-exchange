@@ -6,8 +6,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    currencies: null,
-    currencyPairs: null,
+    currencies: [],
+    currencyPairs: [],
     exchangeRates: null,
   },
   mutations: {
