@@ -48,7 +48,7 @@
               >* rates will update every 30 seconds</span
             >
             <p class="summary-info__line">
-              Commission: <span>{{ currentPair[0].commission * 100 }}%</span>
+              Commission: <span>{{ currentPair.commission * 100 }}%</span>
             </p>
           </div>
           <button
@@ -111,17 +111,17 @@ export default {
       );
     },
     currentPair() {
-      return this.$store.getters.getCurrencyPairs.filter(
+      return this.$store.getters.getCurrencyPairs.find(
         (item) =>
           item.mainCurrency == this.mainCurrency &&
           item.quoteCurrency == this.quoteCurrency
       );
     },
     currentRate() {
-      return this.$store.getters.getExchangeRates.filter(
+      return this.$store.getters.getExchangeRates.find(
         (item) =>
           item.from == this.mainCurrency && item.to == this.quoteCurrency
-      )[0].rate;
+      ).rate;
     },
   },
   methods: {
@@ -137,7 +137,7 @@ export default {
     },
     calculatePay() {
       const converted = Math.fround(this.recieveAmount / this.currentRate);
-      const commission = Math.round(converted * this.currentPair[0].commission);
+      const commission = Math.round(converted * this.currentPair.commission);
       const result = parseFloat(converted + commission);
       return isNaN(result)
         ? ((this.payAmount = 0), (this.recieveAmount = 0))
@@ -145,7 +145,7 @@ export default {
     },
     calculateRecieve() {
       const converted = this.payAmount * this.currentRate;
-      const commission = converted * this.currentPair[0].commission;
+      const commission = converted * this.currentPair.commission;
       const result = parseFloat(converted - commission);
       return isNaN(result)
         ? ((this.recieveAmount = 0), (this.payAmount = 0))
